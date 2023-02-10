@@ -1,5 +1,6 @@
 
-struct Position{
+struct Position
+{
     double x, y, z;
 };
 
@@ -9,20 +10,22 @@ public:
     void SetX(double _x) { x = _x; }
     void SetY(double _y) { y = _y; }
     void SetZ(double _z) { z = _z; }
-    void setDiameter(double d) { diameter = d; }
     void setEnergy(double e) { energy = e; }
 
 public:
-    double getDiameter() { return diameter; }
+    double GetX() { return x; }
+    double GetY() { return y; }
+    double GetZ() { return z; }
     double getEnergy() { return energy; }
 
 public:
     void update();
     void getback();
+    void AdjsutBox();
+    void AdjsutBoxBack();
 
 private:
-    double x,y,z;
-    double x_old,y_old,z_old;
-    double diameter;
+    double x, y, z;
+    double x_old, y_old, z_old;
     double energy;
 };

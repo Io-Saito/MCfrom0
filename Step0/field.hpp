@@ -1,6 +1,6 @@
 
-#include <polymer.h>
-#include <monomer.h>
+#include <polymer.hpp>
+#include <monomer.hpp>
 #include <vector>
 using std::vector;
 
@@ -23,14 +23,14 @@ public:
         y = _y;
         z = _z;
     }
-    void addPolymers(vector<Polymer *> _polymer) { polymers = _polymer; }
+    void addPolymers(vector<Polymer *> _polymer) { Polymers = _polymer; }
 
 public:
-    int move(int);
-    bool Potential_between_chains(int, int, int);
+    int move();
+    bool Potential_between_chains(int, int);
     bool CheckAngle(int, int, int);
     double distance(int, int, int, int);
-    double angle(int, int, int, int);
+    double angle(int, int, int,int);
 
 public:
     double getX() { return x; }
@@ -43,5 +43,5 @@ private:
 private:
     double x, y, z;
     double x_old, y_old, z_old;
-    vector<Polymer *> polymers;
+    vector<Polymer *> Polymers;
 };
