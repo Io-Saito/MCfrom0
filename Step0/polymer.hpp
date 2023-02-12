@@ -12,8 +12,8 @@ public:
     Monomer *getMonomer(int);
     void monomer_of_polymerMove(int);
     void monomer_of_polymerBack(int);
-    void adjustBox(int);
-    void adjustBoxback(int);
+    void adjustBox(float,float,float);
+    void adjustBoxback();
     double distance(int, int);
     double angle(int, int, int);
     bool Potential_in_chain(int);

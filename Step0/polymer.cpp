@@ -15,13 +15,18 @@ void Polymer::monomer_of_polymerBack(int i){
     Monomers[i]->getback();
 }
 
-void Polymer::adjustBox(int i){
-    Monomers[i]->adjustBox();
+void Polymer::adjustBox(x_,y_,z_){
+    for (int i =0; i<=Monomers.Length(); i++){
+    Monomers[i]->adjustBox(x_,y_,z_);
+    }
 };
 
-void Polymer::adjustBoxBack(int i)
+void Polymer::adjustBoxback()
 {
-    Monomers[i]->adjustBoxBack();
+    for (int i = 0; i <= Monomers.Length(); i++)
+    {
+    Monomers[i]->getback();
+    }
 };
 
 bool Polymer::CheckAngle(int j){

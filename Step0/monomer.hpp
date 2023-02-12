@@ -21,8 +21,7 @@ public:
 public:
     void update();
     void getback();
-    void AdjsutBox();
-    void AdjsutBoxBack();
+    void AdjsutField(float,float,float);
 
 private:
     double x, y, z;
