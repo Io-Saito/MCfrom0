@@ -28,7 +28,6 @@ int Field::move()
     x = x_old + rand.randomNumber();
     y = y_old + rand.randomNumber();
     z = z_old + rand.randomNumber();
-    Monomer *temp_Monomer;
     // Move all monomers to adjust Box
     for (int i = 0; i < Polymers.size(); i++)
     {
@@ -64,9 +63,6 @@ bool Field::Potential_between_chains(int i, int j)
     // Potential between j-th monomer of i-th polymer and other all monomers
     int accept = 0;
     int num = 0;
-    Monomer *temp1;
-    Monomer *temp2;
-    temp1 = Polymers[i]->getMonomer(j);
     for (int k = 0; k < Polymers.size(); k++)
     {
         for (int q = 0; q < Polymers[k]->Length(); q++)
@@ -78,7 +74,6 @@ bool Field::Potential_between_chains(int i, int j)
             else
             {
                 double cutoff_ = fmin(Polymers[k]->cutoff, Polymers[i]->cutoff);
-                temp2 = Polymers[k]->getMonomer(q);
                 if (distance(i, j, k, q) >= cutoff_)
                 {
                     accept++;

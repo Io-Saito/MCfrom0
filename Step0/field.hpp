@@ -1,6 +1,5 @@
 
-#include <polymer.hpp>
-#include <monomer.hpp>
+#include "polymer.hpp"
 #include <vector>
 using std::vector;
 

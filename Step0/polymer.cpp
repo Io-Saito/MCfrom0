@@ -1,58 +1,69 @@
 #include "polymer.hpp"
-#include "monomer.hpp"
 #include <math.h>
 using namespace std;
 
-void Polymer::monomer_of_polymerMove(int i){
+void Polymer::monomer_of_polymerMove(int i)
+{
     Monomers[i]->update();
 }
 
-Monomer* Polymer::getMonomer(int i){
+Monomer *Polymer::getMonomer(int i)
+{
     return Monomers[i];
 }
 
-void Polymer::monomer_of_polymerBack(int i){
+void Polymer::monomer_of_polymerBack(int i)
+{
     Monomers[i]->getback();
 }
 
-void Polymer::adjustBox(x_,y_,z_){
-    for (int i =0; i<=Monomers.Length(); i++){
-    Monomers[i]->adjustBox(x_,y_,z_);
+void Polymer::adjustBox(float x_, float y_, float z_)
+{
+    for (int i = 0; i <= static_cast<int>(Monomers.size()); i++)
+    {
+        Monomers[i]->AdjustField(x_, y_, z_);
     }
 };
 
 void Polymer::adjustBoxback()
 {
-    for (int i = 0; i <= Monomers.Length(); i++)
+    for (int i = 0; i <= static_cast<int>(Monomers.size()); i++)
     {
-    Monomers[i]->getback();
+        Monomers[i]->getback();
     }
 };
 
-bool Polymer::CheckAngle(int j){
-    if(j==0 || j==Monomers.size()-1){
-        // j is the first/last monomer of the polymer 
+bool Polymer::CheckAngle(int j)
+{
+    if (j == 0 || j == static_cast<int>(Monomers.size()) - 1)
+    {
+        // j is the first/last monomer of the polymer
         return true;
-    }else{
-        double angle_ =angle(j-1,j,j+1);
-        if(cos(angle_)<cos(BondAngle)){
+    }
+    else
+    {
+        double angle_ = angle(j - 1, j, j + 1);
+        if (cos(angle_) < cos(BondAngle))
+        {
             return true;
-        }else{
+        }
+        else
+        {
             return false;
         }
     }
 }
 
-
-bool Polymer::Potential_in_chain(int i){
+bool Polymer::Potential_in_chain(int i)
+{
     int count = 0;
-    for (int k = 0; k < Monomers.size(); k++)
+    for (int k = 0; k < static_cast<int>(Monomers.size()); k++)
     {
         if (k != i)
         {
             if (k == i - 1 || k == i + 1)
             {
-                if ( distance(i, k) >= cutoff && distance(i, k) < cutoff * 1.5)
+                if (distance(i, k) >= cutoff && distance(i, k) < cutoff * 1.5)
                 {
                     count++;
                 }
@@ -66,7 +77,7 @@ bool Polymer::Potential_in_chain(int i){
             }
         }
     }
-    if (count == (Monomers.size() - 1))
+    if (count == (static_cast<int>(Monomers.size()) - 1))
     {
         return true;
     }
@@ -76,7 +87,8 @@ bool Polymer::Potential_in_chain(int i){
     }
 }
 
-double Polymer::distance(int i, int j){
+double Polymer::distance(int i, int j)
+{
     Monomer *m_i;
     Monomer *m_j;
     double distance;
@@ -91,11 +103,10 @@ double Polymer::distance(int i, int j){
 
 double Polymer::angle(int i, int j, int k)
 {
-    //i->j->k
+    // i->j->k
     Monomer *m_i;
     Monomer *m_j;
     Monomer *m_k;
-    double angle;
     m_i = getMonomer(i);
     m_j = getMonomer(j);
     m_k = getMonomer(k);

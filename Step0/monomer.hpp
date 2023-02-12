@@ -1,11 +1,10 @@
-
-struct Position
-{
-    double x, y, z;
-};
+#pragma once
 
 class Monomer
 {
+public:
+    Monomer() {}
+
 public:
     void SetX(double _x) { x = _x; }
     void SetY(double _y) { y = _y; }
@@ -21,10 +20,11 @@ public:
 public:
     void update();
     void getback();
-    void AdjsutField(float,float,float);
+    void AdjustField(float,float,float);
 
 private:
     double x, y, z;
     double x_old, y_old, z_old;
     double energy;
 };
+

@@ -3,7 +3,8 @@
 #include <cstdlib>
 using namespace std;
 
-void Monomer::update(){
+void Monomer::update()
+{
     Random rand;
     x_old = x;
     y_old = y;
@@ -20,11 +21,12 @@ void Monomer::getback()
     z = z_old;
 };
 
-void Monomer::AdjsutField(float x_,float y_,float z_){
-    x_old=x;
-    y_old=y;
-    z_old=z;
-    x = x*x_;
-    y = y*y_;
-    z = z*z_;
+void Monomer::AdjustField(float x_, float y_, float z_)
+{
+    x_old = x;
+    y_old = y;
+    z_old = z;
+    x = x * x_;
+    y = y * y_;
+    z = z * z_;
 }
