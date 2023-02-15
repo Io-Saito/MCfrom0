@@ -4,7 +4,7 @@
 #include <assert.h>
 #include <iostream>
 using namespace std;
-#include "Random.hpp"
+#include "Random.h"
 
 void Random::setSeed()
 {

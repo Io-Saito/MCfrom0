@@ -3,11 +3,12 @@
 #include <string>
 #include <assert.h>
 using namespace std;
-#include "WebLab.hpp"
+#include "WebLab.h"
 
 void WebLab::openFile()
 {
     stream = fopen(file_name.c_str(), "w");
+    cout << "Open file";
     assert(stream);
 }
 

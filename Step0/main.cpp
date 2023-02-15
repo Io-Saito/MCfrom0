@@ -4,20 +4,20 @@
 #include <time.h>
 #include <vector>
 using namespace std;
-#include "Random.hpp"
-#include "monomer.hpp"
-#include "field.hpp"
-#include "Read.hpp"
-#include "WebLab.hpp"
+#include "Random.h"
+#include "monomer.h"
+#include "field.h"
+#include "Read.h"
+#include "WebLab.h"
 
 int main()
 {
     const int total_number_of_steps = 500;
-    const int number_of_beads = 100;
+    const int number_of_beads = 50;
     vector<Monomer *> beads(number_of_beads);
     vector<double> line;
     Read read;
-    read.setFileName("/Users/io/Project/MCfrom0/MCfrom0/Step0/start.txt");
+    read.setFileName("/Users/io/Project/MCfrom0/Step0/start.txt");
     read.openFile();
     int i, j;
     for (i = 0; i < number_of_beads; i++)
@@ -31,12 +31,12 @@ int main()
     read.closeFile();
 
     const int number_of_polymers = 10;
-    const int number_of_beads_in_polymer = 10;
+    const int number_of_beads_in_polymer = 5;
     vector<Polymer *> polymers(number_of_polymers);
-
     for (i = 0; i < number_of_polymers; i++)
     {
         polymers[i] = new Polymer;
+        polymers[i]->set_identifier(static_cast<char>(i));
         for (j = 0; j < number_of_beads_in_polymer; j++)
         {
             polymers[i]->addMonomer(beads[j + i * number_of_beads_in_polymer]);
@@ -48,24 +48,13 @@ int main()
     double box_z = 20.0;
     Field *field = new Field(box_x, box_y, box_z);
     field->addPolymers(polymers);
-
-    WebLab weblab;
-    weblab.setFileName("movie.pdb");
-    weblab.openFile();
-    vector<char> chain(10);
-    chain[0] = 'A';
-    chain[1] = 'B';
-    chain[2] = 'C';
-    chain[3] = 'D';
-    chain[4] = 'E';
-    chain[5] = 'F';
-    chain[6] = 'G';
-    chain[7] = 'H';
-    chain[8] = 'I';
-    chain[9] = 'J';
-
+    // WebLab weblab;
+    // weblab.setFileName("movie.pdb");
+    // weblab.openFile();
+    cout << "ready to start";
     FILE *_stream;
-    _stream = fopen("/Users/io/Project/MCfrom0/MCfrom0/Step0/finish.txt", "w");
+    _stream = fopen("/Users/io/Project/MCfrom0/Step0/finish.txt", "w");
+    cout << "ready to move polymer";
 
     Monomer *temp;
     int l;
@@ -75,8 +64,9 @@ int main()
 
         field->move();
         l = 1;
-        weblab.writeHeader(i);
+        // weblab.writeHeader(i);
         fprintf(_stream, "%d\n", i);
+        cout << i << "th iteration \n";
         fprintf(_stream, "%lf\t%lf\t%lf\n", field->getX(), field->getY(), field->getZ());
         for (j = 0; j < number_of_polymers; j++)
         {
@@ -86,15 +76,15 @@ int main()
                 fprintf(_stream, "%lf\t", temp->GetX());
                 fprintf(_stream, "%lf\t", temp->GetY());
                 fprintf(_stream, "%lf\n", temp->GetZ());
-                weblab.writePosition(l, chain[j], j, temp->GetX(), temp->GetY(), temp->GetZ());
+                // weblab.writePosition(l, polymers[j]->get_identifier(), j, temp->GetX(), temp->GetY(), temp->GetZ());
                 l++;
             }
         }
         fprintf(_stream, "\n");
-        weblab.writeEnd();
+        // weblab.writeEnd();
     }
     fclose(_stream);
-    weblab.closeFile();
+    // weblab.closeFile();
     cout << "finish" << endl;
     return 0;
 }

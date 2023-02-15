@@ -1,7 +1,6 @@
-
-#include "polymer.hpp"
 #include <vector>
 using std::vector;
+#include "polymer.h"
 
 class Field
 {
@@ -29,7 +28,7 @@ public:
     bool Potential_between_chains(int, int);
     bool CheckAngle(int, int, int);
     double distance(int, int, int, int);
-    double angle(int, int, int,int);
+    double angle(int, int, int, int);
 
 public:
     double getX() { return x; }

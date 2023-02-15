@@ -6,7 +6,7 @@
 #include <vector>
 #include <assert.h>
 using namespace std;
-#include "Read.hpp"
+#include "Read.h"
 
 void Read::openFile()
 {

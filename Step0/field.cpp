@@ -1,10 +1,14 @@
-#include "field.hpp"
 #include <math.h>
-#include "Random.hpp"
+#include <iostream>
+using namespace std;
+#include "Random.h"
+#include "field.h"
+#include "polymer.h"
+#include "monomer.h"
 
 int Field::move()
 {
-    for (int i = 0; i < Polymers.size(); i++)
+    for (int i = 0; i < static_cast<int>(Polymers.size()); i++)
     {
         Polymer *temp = Polymers[i];
         for (int j = 0; j < temp->Length(); j++)
@@ -29,12 +33,12 @@ int Field::move()
     y = y_old + rand.randomNumber();
     z = z_old + rand.randomNumber();
     // Move all monomers to adjust Box
-    for (int i = 0; i < Polymers.size(); i++)
+    for (int i = 0; i < static_cast<int>(Polymers.size()); i++)
     {
         Polymers[i]->adjustBox(x / x_old, y / y_old, z / z_old);
     }
 
-    for (int i = 0; i < Polymers.size(); i++)
+    for (int i = 0; i < static_cast<int>(Polymers.size()); i++)
     {
         Polymer *temp = Polymers[i];
         for (int j = 0; j < temp->Length(); j++)
@@ -44,7 +48,7 @@ int Field::move()
             }
             else
             {
-                for (int i = 0; i < Polymers.size(); i++)
+                for (int i = 0; i < static_cast<int>(Polymers.size()); i++)
                 {
                     Polymers[i]->adjustBoxback();
                 }
@@ -63,7 +67,7 @@ bool Field::Potential_between_chains(int i, int j)
     // Potential between j-th monomer of i-th polymer and other all monomers
     int accept = 0;
     int num = 0;
-    for (int k = 0; k < Polymers.size(); k++)
+    for (int k = 0; k < static_cast<int>(Polymers.size()); k++)
     {
         for (int q = 0; q < Polymers[k]->Length(); q++)
         {

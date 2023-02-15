@@ -1,6 +1,8 @@
-#include "polymer.hpp"
 #include <math.h>
+#include <iostream>
 using namespace std;
+#include "monomer.h"
+#include "polymer.h"
 
 void Polymer::monomer_of_polymerMove(int i)
 {

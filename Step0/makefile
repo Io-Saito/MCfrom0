@@ -8,7 +8,7 @@ HED=$(shell ls *.hpp)
 OBJ=$(SRC:.cpp=.o)
 
 CC=g++
-CPPFLAGS=-std=c++11 -march=native -Wall -Wextra -O3
+CPPFLAGS=-std=c++17 -g -march=native -Wall -Wextra -O3 
 
 -include makefile.opt
 

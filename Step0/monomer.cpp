@@ -1,5 +1,5 @@
-#include "monomer.hpp"
-#include "Random.hpp"
+#include "monomer.h"
+#include "Random.h"
 #include <cstdlib>
 using namespace std;
 
