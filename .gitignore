@@ -24,3 +24,7 @@ docs/site/
 Manifest.toml
 *.o
 *.out
+*.gif
+*.csv
+*.txt
+.vscode/
