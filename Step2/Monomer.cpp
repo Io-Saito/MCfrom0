@@ -10,9 +10,9 @@ void Monomer::update()
     x_old = x;
     y_old = y;
     z_old = z;
-    x = x + rand.randomNumber() * 1;
-    y = y + rand.randomNumber() * 1;
-    z = z + rand.randomNumber() * 1;
+    x = x_old + rand.randomNumber();
+    y = y_old + rand.randomNumber();
+    z = z_old + rand.randomNumber();
 };
 
 void Monomer::getback()
@@ -27,7 +27,7 @@ void Monomer::AdjustField(float x_, float y_, float z_)
     x_old = x;
     y_old = y;
     z_old = z;
-    x = x * x_;
-    y = y * y_;
-    z = z * z_;
+    x = x_old * x_;
+    y = y_old * y_;
+    z = z_old * z_;
 }
