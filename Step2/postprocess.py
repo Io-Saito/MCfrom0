@@ -1,45 +1,57 @@
 # %%
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+import plotly.express as px
+import io
+import PIL
 import numpy as np
-
+from tqdm import tqdm
+from plotly.colors import qualitative
 # %%
 df = pd.read_csv("/Users/io/Project/Polymer_Monte_Carlo/Step2/finish.csv")
-df_chains = [df.groupby("chain").get_group(x) for x in df['chain'].unique()]
-timestep = df["timestep"].unique()
+df["chain"] = df["chain"].astype(str)
 
 # %%
-fig = plt.figure(figsize=(16, 16))
-cordinate = fig.add_subplot(111, projection='3d')
 
 
-def run(i):
-    cordinate.clear()
-    plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['xtick.direction'] = 'in'
-    plt.rcParams['ytick.direction'] = 'in'
-    plt.rcParams['xtick.major.width'] = 1.0
-    plt.rcParams['ytick.major.width'] = 1.0
-    plt.rcParams['font.size'] = 25
-    plt.rcParams['axes.linewidth'] = 1.0
-    plt.title(f"timestep:{i}")
-    for y in df_chains:
-        chain = y[y["timestep"] == i]
-        cordinate.plot(chain["x"], chain["y"],
-                       chain["z"], marker='o', linestyle='solid')
-    cordinate.set_xlim(190, 210)
-    cordinate.set_ylim(190, 210)
-    cordinate.set_zlim(190, 210)
-    cordinate.set_xlabel('X ')
-    cordinate.set_ylabel('Y ')
-    cordinate.set_zlabel('Z ')
-    cordinate.set_title('Visualization')
+fig_ = px.line_3d(
+    data_frame=df,
+    x="X",
+    y="Y",
+    z="Z",
+    color='chain',
+    color_discrete_sequence=qualitative.Plotly,
+    animation_frame='timestep')
 
+print("figure converted")
+fig_.update_layout(
+    scene=dict(
+        xaxis=dict(nticks=2, range=[190, 210],),
+        yaxis=dict(nticks=2, range=[190, 210],),
+        zaxis=dict(nticks=2, range=[190, 210]),
+        aspectratio=dict(x=1, y=1, z=1),
+    ),
+    width=800,
+    height=800,
+    margin=dict(r=20, l=10, b=10, t=10))
 
-ani = FuncAnimation(
-    fig, run, frames=timestep, interval=1, repeat=False)
-ani.save(f"test.gif")
+frames = []
+for s, fr in tqdm(enumerate(fig_.frames)):
+    # set main traces to appropriate traces within plotly frame
+    fig_.update(data=fr.data)
+    # move slider to correct place
+    fig_.layout.sliders[0].update(active=s)
+    # generate image of current state
+    frames.append(PIL.Image.open(io.BytesIO(fig_.to_image(format="png"))))
 
-
-# %%
+# create animated GIF
+frames[0].save(
+    "plotly2.gif",
+    save_all=True,
+    append_images=frames[1:],
+    optimize=True,
+    duration=200,
+    loop=0,
+)
+print("saved")

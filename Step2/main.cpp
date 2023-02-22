@@ -12,7 +12,7 @@ using namespace std;
 
 int main(int argc, char *const argv[])
 {
-	const int total_number_of_steps = 50000;
+	const int total_number_of_steps = 5001;
 	const int number_of_beads = 100;
 	vector<Monomer *> beads(number_of_beads);
 	vector<double> line;
@@ -51,7 +51,7 @@ int main(int argc, char *const argv[])
 
 	FILE *_stream;
 	_stream = fopen("/Users/io/Project/Polymer_Monte_Carlo/Step2/finish.csv", "w");
-	fprintf(_stream, "timestep,chain,monomer,x,y,z\n");
+	fprintf(_stream, "timestep,chain,monomer,X,Y,Z\n");
 	for (int i = 0; i < total_number_of_steps; i++)
 	{
 		box->move();
@@ -66,7 +66,7 @@ int main(int argc, char *const argv[])
 				float x = temp->GetX();
 				float y = temp->GetY();
 				float z = temp->GetZ();
-				if (i % 1 == 0)
+				if (i % 10 == 0)
 				{
 					fprintf(_stream, "%d,%d,%d,%lf,%lf,%lf\n", i, j, k, x, y, z);
 					fprintf(_stream, "\n");
