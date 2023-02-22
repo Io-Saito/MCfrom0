@@ -9,7 +9,7 @@ import numpy as np
 from tqdm import tqdm
 from plotly.colors import qualitative
 # %%
-df = pd.read_csv("/Users/io/Project/Polymer_Monte_Carlo/Step2/finish.csv")
+df = pd.read_csv("/Users/io/Project/Polymer_Monte_Carlo/Step3/finish.csv")
 df["chain"] = df["chain"].astype(str)
 
 # %%
@@ -28,9 +28,9 @@ fig_ = px.line_3d(
 print("figure converted")
 fig_.update_layout(
     scene=dict(
-        xaxis=dict(nticks=2, range=[180, 220],),
-        yaxis=dict(nticks=2, range=[180, 220],),
-        zaxis=dict(nticks=2, range=[180, 220]),
+        xaxis=dict(nticks=2, range=[-30, 30],),
+        yaxis=dict(nticks=2, range=[-30, 30],),
+        zaxis=dict(nticks=2, range=[-30, 30]),
         aspectratio=dict(x=1, y=1, z=1),
     ),
     width=800,
