@@ -1,7 +1,7 @@
 
 python preprocess.py $2 $3
 make
-./a.out $2 $3 $4
+./a.out
 python postprocess.py
 cd data
 mkdir $1

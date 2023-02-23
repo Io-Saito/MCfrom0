@@ -13,11 +13,11 @@ using namespace std;
 int main(int argc, char *const argv[])
 {
 	const int total_number_of_steps = 5001;
-	const int number_of_beads = 10 * 10;
+	const int number_of_beads = 100;
 	vector<Monomer *> beads(number_of_beads);
 	vector<double> line;
 	Read read;
-	read.setFileName("/Users/io/Project/Polymer_Monte_Carlo/start.txt");
+	read.setFileName("/Users/io/Project/Polymer_Monte_Carlo/Step3/start.txt");
 	read.openFile();
 	for (int i = 0; i < number_of_beads; i++)
 	{
@@ -28,8 +28,8 @@ int main(int argc, char *const argv[])
 		beads[i]->SetZ(line[2]);
 	}
 	read.closeFile();
-	const int number_of_polymers = atoi(argv[1]);
-	const int number_of_beads_in_polymer = atoi(argv[2]);
+	const int number_of_polymers = 10;
+	const int number_of_beads_in_polymer = 10;
 	vector<Polymer *> polymers(number_of_polymers);
 	for (int i = 0; i < number_of_polymers; i++)
 	{
@@ -49,7 +49,7 @@ int main(int argc, char *const argv[])
 	box->addPolymers(polymers);
 	// box->setBoxMaxStepSize(0.5);
 	FILE *_stream;
-	_stream = fopen("/Users/io/Project/Polymer_Monte_Carlo/finish.csv", "w");
+	_stream = fopen("/Users/io/Project/Polymer_Monte_Carlo/Step3/finish.csv", "w");
 	fprintf(_stream, "timestep,chain,monomer,X,Y,Z\n");
 	for (int i = 0; i < total_number_of_steps; i++)
 	{
