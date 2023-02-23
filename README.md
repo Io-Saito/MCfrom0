@@ -9,6 +9,8 @@
 ### Step2
 
 * Use Plotly to visualize
+* Randomized initial configuration
+* Set bondangle
 
 
 ### Step3

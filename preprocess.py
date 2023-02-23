@@ -1,8 +1,11 @@
 # %%
 import numpy as np
+import sys
+
+args = sys.argv
 # %%
-length_of_polymer = 10
-number_of_polymer = 10
+length_of_polymer = int(args[1])
+number_of_polymer = int(args[2])
 
 # %%
 with open('start.txt', 'w') as f:
@@ -12,7 +15,7 @@ with open('start.txt', 'w') as f:
         start_z = np.random.uniform(-15, 10)
         choose = np.random.choice([1, 2, 3])
         for j in range(length_of_polymer):
-            if choose ==1:
+            if choose == 1:
                 x = np.random.uniform(-1, 1)+start_x+2*j
                 y = np.random.uniform(-1, 1)+start_y+2*i
                 z = np.random.uniform(-1, 1)+start_z+2*i

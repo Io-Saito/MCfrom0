@@ -8,8 +8,9 @@ import PIL
 import numpy as np
 from tqdm import tqdm
 from plotly.colors import qualitative
-# %%
-df = pd.read_csv("/Users/io/Project/Polymer_Monte_Carlo/Step3/finish.csv")
+
+
+df = pd.read_csv("~/Project/Polymer_Monte_Carlo/finish.csv")
 df["chain"] = df["chain"].astype(str)
 
 # %%
@@ -48,7 +49,7 @@ for s, fr in tqdm(enumerate(fig_.frames)):
 
 # create animated GIF
 frames[0].save(
-    "plotly2.gif",
+    "result.gif",
     save_all=True,
     append_images=frames[1:],
     optimize=True,
