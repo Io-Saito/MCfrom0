@@ -4,6 +4,7 @@ class Random
 public:
     Random() { setSeed(); }
     double randomNumber();
+    double randomAngle();
 
 private:
     void setSeed();

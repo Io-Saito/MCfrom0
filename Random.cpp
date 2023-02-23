@@ -20,6 +20,13 @@ double Random::randomNumber()
         return ran1(&idum);
 }
 
+double Random::randomAngle()
+{
+    double ran = ran1(&idum)*2*atan(1);
+    return ran;
+
+}
+
 double Random::ran1(long *idum)
 {
     const long IA = 16807;

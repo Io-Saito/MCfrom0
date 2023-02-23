@@ -7,13 +7,14 @@ using namespace std;
 #include "Random.h"
 #include "Read.h"
 #include "Monomer.h"
+#include "FreeJointChain.h"
 #include "Polymer.h"
 #include "Box.h"
 
 int main(int argc, char *const argv[])
 {
-	const int total_number_of_steps = 5001;
-	const int number_of_beads = 10 * 10;
+	const int total_number_of_steps = 501;
+	const int number_of_beads = 20;
 	vector<Monomer *> beads(number_of_beads);
 	vector<double> line;
 	Read read;
@@ -28,14 +29,15 @@ int main(int argc, char *const argv[])
 		beads[i]->SetZ(line[2]);
 	}
 	read.closeFile();
-	const int number_of_polymers = atoi(argv[1]);
-	const int number_of_beads_in_polymer = atoi(argv[2]);
+	const int number_of_polymers = 2;
+	const int number_of_beads_in_polymer = 10;
 	vector<Polymer *> polymers(number_of_polymers);
 	for (int i = 0; i < number_of_polymers; i++)
 	{
-		polymers[i] = new Polymer;
-		polymers[i]->set_Cutoff(3.0);
+		polymers[i] = new FreeJointChain;
+		polymers[i]->set_Cutoff(2.0);
 		polymers[i]->set_BondAngle(30.0);
+		polymers[i]->set_BondLength(2.0);
 		for (int j = 0; j < number_of_beads_in_polymer; j++)
 		{
 			polymers[i]->addMonomer(beads[j + i * number_of_beads_in_polymer]);

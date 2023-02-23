@@ -4,10 +4,15 @@
 using namespace std;
 #include "Monomer.h"
 #include "Polymer.h"
+#include "Random.h"
 
 void Polymer::monomer_of_polymerMove(int i)
 {
-    Monomers[i]->update();
+    Random rand;
+    float x = rand.randomNumber();
+    float y = rand.randomNumber();
+    float z = rand.randomNumber();
+    Monomers[i]->update(x, y, z);
 }
 
 Monomer *Polymer::getMonomer(int i)
@@ -66,7 +71,7 @@ bool Polymer::Potential_in_chain(int i)
         {
             if (k == i - 1 || k == i + 1)
             {
-                if (distance(i, k) >= cutoff*0.1 && distance(i, k) < cutoff * 1.5)
+                if (distance(i, k) >= cutoff * 0.1 && distance(i, k) < cutoff * 1.5)
                 {
                     count++;
                 }

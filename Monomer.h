@@ -16,7 +16,7 @@ public:
     double getEnergy() { return energy; }
 
 public:
-    void update();
+    void update(float,float,float);
     void getback();
     void AdjustField(float, float, float);
 

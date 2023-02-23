@@ -4,15 +4,15 @@ using namespace std;
 #include "Monomer.h"
 #include "Random.h"
 
-void Monomer::update()
+void Monomer::update(float x_, float y_, float z_)
 {
-    Random rand;
+    
     x_old = x;
     y_old = y;
     z_old = z;
-    x = x_old + rand.randomNumber();
-    y = y_old + rand.randomNumber();
-    z = z_old + rand.randomNumber();
+    x = x_old + x_;
+    y = y_old + y_;
+    z = z_old + z_;
 };
 
 void Monomer::getback()
