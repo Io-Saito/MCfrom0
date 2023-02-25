@@ -25,17 +25,22 @@ fig_ = px.line_3d(
     color_discrete_sequence=qualitative.Plotly,
     animation_frame='timestep')
 
+fig_.update_traces(marker=dict(size=5),
+                   opacity=0.8)
+
 print("figure converted")
 fig_.update_layout(
     scene=dict(
-        xaxis=dict(nticks=2, range=[-30, 30],),
-        yaxis=dict(nticks=2, range=[-30, 30],),
-        zaxis=dict(nticks=2, range=[-30, 30]),
+        xaxis=dict(nticks=2, range=[-100, 100],),
+        yaxis=dict(nticks=2, range=[-100, 100],),
+        zaxis=dict(nticks=2, range=[-100, 100]),
         aspectratio=dict(x=1, y=1, z=1),
     ),
     width=800,
     height=800,
     margin=dict(r=20, l=10, b=10, t=10))
+
+fig_.update_traces()
 
 frames = []
 for s, fr in tqdm(enumerate(fig_.frames)):

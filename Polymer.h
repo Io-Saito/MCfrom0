@@ -1,4 +1,5 @@
 #include "Monomer.h"
+#include <math.h>
 #pragma once
 using namespace std;
 
@@ -20,7 +21,7 @@ public:
     bool Potential_in_chain(int);
     bool CheckAngle(int);
     void set_Cutoff(double cutoff_) { cutoff = cutoff_; }
-    void set_BondAngle(double bondangle_) { BondAngle = bondangle_; }
+    void set_BondAngle(double bondangle_) { BondAngle = bondangle_ * M_PI / 180; }
     int Length() { return static_cast<int>(Monomers.size()); };
 
 public:

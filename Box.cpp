@@ -125,7 +125,7 @@ bool Box::Potential_between_chains(int i, int j)
             else
             {
                 double cutoff_ = fmin(Polymers[k]->cutoff, Polymers[i]->cutoff);
-                if (distance(i, j, k, q) >= cutoff_ * 0.2)
+                if (distance(i, j, k, q) >= cutoff_*0.02)
                 {
                     accept++;
                 }
@@ -139,7 +139,7 @@ bool Box::Potential_between_chains(int i, int j)
     }
     else
     {
-        return false;
+        return true;
     }
 }
 
