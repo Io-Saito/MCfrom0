@@ -6,13 +6,13 @@ using namespace std;
 
 void Monomer::update(float x_, float y_, float z_)
 {
-    
+
     x_old = x;
     y_old = y;
     z_old = z;
-    x = x_old + x_;
-    y = y_old + y_;
-    z = z_old + z_;
+    x = x_;
+    y = y_;
+    z = z_;
 };
 
 void Monomer::getback()

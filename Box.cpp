@@ -13,16 +13,17 @@ int Box::move()
     for (int i = 0; i < static_cast<int>(Polymers.size()); i++)
     {
         Polymer *temp = Polymers[i];
+        int count = 0;
         for (int j = 0; j < temp->Length(); j++)
         {
             int k = 0;
-            while (k < 1000)
+            while (k < 10)
             {
                 k++;
                 temp->monomer_of_polymerMove(j);
                 if (Potential_between_chains(i, j) && temp->Potential_in_chain(j) && temp->CheckAngle(j))
                 {
-                    cout << "monomer move accepted" << endl;
+                    count++;
                     break;
                 }
                 else
@@ -31,6 +32,7 @@ int Box::move()
                 }
             };
         }
+        cout << i << " : " << count << " monomer has moved" << endl;
     }
 
     int k = 0;
@@ -98,7 +100,7 @@ bool Box::CheckBoxMove()
             }
         }
     }
-    if (accept == (num - 1))
+    if (accept == num)
     {
         return true;
     }
@@ -125,7 +127,7 @@ bool Box::Potential_between_chains(int i, int j)
             else
             {
                 double cutoff_ = fmin(Polymers[k]->cutoff, Polymers[i]->cutoff);
-                if (distance(i, j, k, q) >= cutoff_*0.02)
+                if (distance(i, j, k, q) >= cutoff_ * 2)
                 {
                     accept++;
                 }
@@ -133,13 +135,13 @@ bool Box::Potential_between_chains(int i, int j)
         }
     }
 
-    if (accept == (num - 1))
+    if (num == accept)
     {
         return true;
     }
     else
     {
-        return true;
+        return false;
     }
 }
 

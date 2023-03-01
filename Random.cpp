@@ -22,7 +22,7 @@ double Random::randomNumber()
 
 double Random::randomAngle()
 {
-    double ran = ran1(&idum)*2*atan(1);
+    double ran = ran1(&idum)*2*M_PI;
     return ran;
 
 }

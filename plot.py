@@ -5,7 +5,7 @@ from matplotlib.animation import FuncAnimation
 import numpy as np
 
 # %%
-df = pd.read_csv("/Users/io/Project/Polymer_Monte_Carlo/Step3/finish.csv")
+df = pd.read_csv("/Users/io/Project/Polymer_Monte_Carlo/finish.csv")
 df_chains = [df.groupby("chain").get_group(x) for x in df['chain'].unique()]
 timestep = df["timestep"].unique()
 
@@ -34,9 +34,9 @@ def run(i):
         chain = y[y["timestep"] == i]
         cordinate.plot(chain["X"], chain["Y"],
                        chain["Z"], marker='o', linestyle='solid')
-    cordinate.set_xlim(-20, 20)
-    cordinate.set_ylim(-20, 20)
-    cordinate.set_zlim(-20, 20)
+    cordinate.set_xlim(-100, 100)
+    cordinate.set_ylim(-100, 100)
+    cordinate.set_zlim(-100, 100)
     cordinate.set_xlabel('X ')
     cordinate.set_ylabel('Y ')
     cordinate.set_zlabel('Z ')
@@ -44,7 +44,7 @@ def run(i):
 
 
 ani = FuncAnimation(
-    fig, run, frames=arr, interval=10, repeat=False)
+    fig, run, frames=timestep, interval=10, repeat=False)
 ani.save(f"test.gif")
 
 

@@ -7,14 +7,14 @@ using namespace std;
 #include "Random.h"
 #include "Read.h"
 #include "Monomer.h"
-#include "FreeRotateChain.h"
+#include "FreeJointChain.h"
 #include "Polymer.h"
 #include "Box.h"
 
 int main(int argc, char *const argv[])
 {
-	const int total_number_of_steps = 5001;
-	const int number_of_beads = 200;
+	const int total_number_of_steps = 501;
+	const int number_of_beads = 100;
 	vector<Monomer *> beads(number_of_beads);
 	vector<double> line;
 	Read read;
@@ -29,15 +29,15 @@ int main(int argc, char *const argv[])
 		beads[i]->SetZ(line[2]);
 	}
 	read.closeFile();
-	const int number_of_polymers = 5;
-	const int number_of_beads_in_polymer = 20;
+	const int number_of_polymers = 10;
+	const int number_of_beads_in_polymer = 10;
 	vector<Polymer *> polymers(number_of_polymers);
 	for (int i = 0; i < number_of_polymers; i++)
 	{
-		polymers[i] = new FreeRotateChain;
-		polymers[i]->set_Cutoff(1.0);
-		polymers[i]->set_BondAngle(90.0);
-		polymers[i]->set_BondLength(2.0);
+		polymers[i] = new FreeJointChain;
+		polymers[i]->set_Cutoff(1.5);
+		polymers[i]->set_BondAngle(120.0);
+		polymers[i]->set_BondLength(3.0);
 		for (int j = 0; j < number_of_beads_in_polymer; j++)
 		{
 			polymers[i]->addMonomer(beads[j + i * number_of_beads_in_polymer]);
@@ -67,7 +67,7 @@ int main(int argc, char *const argv[])
 				float x = temp->GetX();
 				float y = temp->GetY();
 				float z = temp->GetZ();
-				if (i % 100 == 0)
+				if (i % 1 == 0)
 				{
 					fprintf(_stream, "%d,%d,%d,%lf,%lf,%lf\n", i, j, k, x, y, z);
 					fprintf(_stream, "\n");

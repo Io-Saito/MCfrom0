@@ -31,9 +31,9 @@ fig_.update_traces(marker=dict(size=5),
 print("figure converted")
 fig_.update_layout(
     scene=dict(
-        xaxis=dict(nticks=2, range=[-100, 100],),
-        yaxis=dict(nticks=2, range=[-100, 100],),
-        zaxis=dict(nticks=2, range=[-100, 100]),
+        xaxis=dict(nticks=2, range=[-150, 150],),
+        yaxis=dict(nticks=2, range=[-150, 150],),
+        zaxis=dict(nticks=2, range=[-150, 150]),
         aspectratio=dict(x=1, y=1, z=1),
     ),
     width=800,
@@ -53,7 +53,7 @@ for s, fr in tqdm(enumerate(fig_.frames)):
 
 # create animated GIF
 frames[0].save(
-    "plotly2.gif",
+    "plotly4.gif",
     save_all=True,
     append_images=frames[1:],
     optimize=True,
