@@ -34,9 +34,9 @@ def run(i):
         chain = y[y["timestep"] == i]
         cordinate.plot(chain["X"], chain["Y"],
                        chain["Z"], marker='o', linestyle='solid')
-    cordinate.set_xlim(-100, 100)
-    cordinate.set_ylim(-100, 100)
-    cordinate.set_zlim(-100, 100)
+    cordinate.set_xlim(-50, 50)
+    cordinate.set_ylim(-50, 50)
+    cordinate.set_zlim(-50, 50)
     cordinate.set_xlabel('X ')
     cordinate.set_ylabel('Y ')
     cordinate.set_zlabel('Z ')

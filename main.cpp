@@ -7,13 +7,13 @@ using namespace std;
 #include "Random.h"
 #include "Read.h"
 #include "Monomer.h"
-#include "FreeJointChain.h"
+#include "RandomChain.h"
 #include "Polymer.h"
 #include "Box.h"
 
 int main(int argc, char *const argv[])
 {
-	const int total_number_of_steps = 501;
+	const int total_number_of_steps = 51;
 	const int number_of_beads = 100;
 	vector<Monomer *> beads(number_of_beads);
 	vector<double> line;
@@ -34,7 +34,7 @@ int main(int argc, char *const argv[])
 	vector<Polymer *> polymers(number_of_polymers);
 	for (int i = 0; i < number_of_polymers; i++)
 	{
-		polymers[i] = new FreeJointChain;
+		polymers[i] = new RandomChain;
 		polymers[i]->set_Cutoff(1.5);
 		polymers[i]->set_BondAngle(120.0);
 		polymers[i]->set_BondLength(3.0);

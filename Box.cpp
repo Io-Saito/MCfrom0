@@ -7,17 +7,18 @@ using namespace std;
 #include "Box.h"
 #include "Polymer.h"
 #include "Monomer.h"
+#include "RandomChain.h"
 
 int Box::move()
 {
-    for (int i = 0; i < static_cast<int>(Polymers.size()); i++)
+    for (int i = 0; i <= static_cast<int>(Polymers.size())-1; i++)
     {
         Polymer *temp = Polymers[i];
         int count = 0;
-        for (int j = 0; j < temp->Length(); j++)
+        for (int j = 0; j <= temp->Length()-1; j++)
         {
             int k = 0;
-            while (k < 10)
+            while (k < 1000)
             {
                 k++;
                 temp->monomer_of_polymerMove(j);

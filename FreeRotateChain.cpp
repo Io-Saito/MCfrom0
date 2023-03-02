@@ -37,10 +37,59 @@ void FreeRotateChain::monomer_of_polymerMove(int i)
 
 bool FreeRotateChain::Potential_in_chain(int i)
 {
-    return true;
+    int count = 0;
+    for (int k = 0; k < static_cast<int>(Monomers.size()); k++)
+    {
+        if (k == i)
+        {
+            count++;
+        }
+        else
+        {
+            if (k == i - 1 || k == i + 1)
+            {
+                if (distance(i, k) == BondLength)
+                {
+                    count++;
+                }
+            }
+            else
+            {
+                if (distance(i, k) >= Polymer::cutoff || BondLength*2 >= distance(i, k))
+                {
+                    count++;
+                }
+            }
+        }
+    }
+    cout << count << endl;
+    if (count == static_cast<int>(Polymer::Monomers.size() - 1))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 bool FreeRotateChain::CheckAngle(int j)
 {
-    return true;
+    if (j == 0 || j == static_cast<int>(Monomers.size()) - 1)
+    {
+        // j is the first/last monomer of the polymer
+        return true;
+    }
+    else
+    {
+        double angle_ = angle(j - 1, j, j + 1);
+        if (cos(angle_) < cos(BondAngle))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
